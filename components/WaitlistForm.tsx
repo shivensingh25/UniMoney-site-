@@ -80,9 +80,10 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
                   value={formData.email}
                   onChange={handleChange}
+                  placeholder="Enter your email"
                 />
               </div>
 
@@ -93,17 +94,17 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                 <select
                   id="hardestPart"
                   name="hardestPart"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent bg-white text-gray-900"
                   value={formData.hardestPart}
                   onChange={handleChange}
                 >
-                  <option value="">Select an option</option>
-                  <option value="eligibility">Strict eligibility requirements</option>
-                  <option value="forex">Forex and currency volatility</option>
-                  <option value="interest">High interest rates</option>
-                  <option value="process">Complex and slow processes</option>
-                  <option value="limited">Limited options for countries/courses</option>
-                  <option value="repayment">Repayment pressure</option>
+                  <option value="" className="text-gray-500">Select an option</option>
+                  <option value="eligibility" className="text-gray-900">Strict eligibility requirements</option>
+                  <option value="forex" className="text-gray-900">Forex and currency volatility</option>
+                  <option value="interest" className="text-gray-900">High interest rates</option>
+                  <option value="process" className="text-gray-900">Complex and slow processes</option>
+                  <option value="limited" className="text-gray-900">Limited options for countries/courses</option>
+                  <option value="repayment" className="text-gray-900">Repayment pressure</option>
                 </select>
               </div>
 
@@ -115,9 +116,10 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                   type="text"
                   id="fromCountry"
                   name="fromCountry"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
                   value={formData.fromCountry}
                   onChange={handleChange}
+                  placeholder="Enter your country"
                 />
               </div>
 
@@ -129,9 +131,10 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                   type="text"
                   id="university"
                   name="university"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-600 focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
                   value={formData.university}
                   onChange={handleChange}
+                  placeholder="Enter university name"
                 />
               </div>
 
