@@ -15,9 +15,12 @@ export const sendWaitlistEmail = async (formData: {
       'template_p7qx7eb',
       {
         from_email: formData.email,
+        reply_to: formData.email,
         hardest_part: formData.hardestPart,
         from_country: formData.fromCountry,
         university: formData.university,
+        to_name: 'UniMoney Team',
+        from_name: 'Waitlist Form',
       }
     );
 
