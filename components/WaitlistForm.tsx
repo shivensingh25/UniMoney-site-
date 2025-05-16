@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { sendWaitlistEmail } from '@/lib/emailjs';
+import emailjs from '@emailjs/browser';
 
 interface WaitlistFormProps {
   isOpen: boolean;
@@ -15,28 +17,36 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  useEffect(() => {
+    // Initialize EmailJS
+    emailjs.init('PYoFuUb5yNF4hZiXJ');
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError('');
+    setSubmitSuccess(false);
 
     try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
-
-      onClose();
+      await sendWaitlistEmail(formData);
+      setSubmitSuccess(true);
+      setTimeout(() => {
+        onClose();
+        setSubmitSuccess(false);
+        // Reset form
+        setFormData({
+          email: '',
+          hardestPart: '',
+          fromCountry: '',
+          university: '',
+        });
+      }, 2000);
     } catch (error) {
-      setSubmitError('Failed to submit form. Please try again.');
+      console.error('Form submission error:', error);
+      setSubmitError(error instanceof Error ? error.message : 'Failed to submit form. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -140,6 +150,10 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
 
               {submitError && (
                 <p className="text-red-600 text-center">{submitError}</p>
+              )}
+
+              {submitSuccess && (
+                <p className="text-green-600 text-center">Thank you for joining the waitlist!</p>
               )}
 
               <div className="flex justify-center space-x-4">
