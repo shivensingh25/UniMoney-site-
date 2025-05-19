@@ -189,7 +189,7 @@ const Problems = () => {
           className="mt-24 flex justify-center items-center space-x-6"
         >
           <motion.a 
-            href="https://www.linkedin.com/company/eship-portfolio/posts/?feedView=all" 
+            href="https://www.linkedin.com/company/uni-money/" 
             target="_blank" 
             rel="noopener noreferrer"
             whileHover={{ scale: 1.2 }}
