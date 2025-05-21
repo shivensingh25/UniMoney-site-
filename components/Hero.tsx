@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
 import WaitlistForm from './WaitlistForm';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 const TypewriterText = ({ text, onComplete }: { text: string; onComplete: () => void }) => {
   const [currentText, setCurrentText] = useState('');
@@ -48,6 +49,7 @@ const Hero = () => {
   const [isTypingDone, setIsTypingDone] = useState(false);
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const router = useRouter();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e8f5e9] via-[#c8e6c9] to-[#b2dfdb]">
@@ -65,7 +67,7 @@ const Hero = () => {
                 text="Facing problems securing loans to study abroad?"
                 onComplete={() => setIsTypingDone(true)}
               />
-            </h1>
+          </h1>
           </div>
 
           <div className={`text-xl sm:text-2xl md:text-3xl text-gray-700 max-w-4xl mx-auto transition-all duration-1000 ${
@@ -89,14 +91,14 @@ const Hero = () => {
                     repeatType: "reverse"
                   }}
                 >
-                  <Image
+              <Image
                     src={imgError ? "/brand/logo/logo.png" : "/brand/logo/Logo.png"}
-                    alt="UniMoney Logo"
+                alt="UniMoney Logo"
                     fill
                     className="object-contain"
                     priority
                     onError={() => setImgError(true)}
-                  />
+              />
                 </motion.div>
               </div>
             </div>
@@ -111,7 +113,7 @@ const Hero = () => {
             >
               <span className="relative z-10">Sign Up</span>
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-            </button>
+              </button>
           </div>
         </div>
       </div>

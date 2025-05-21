@@ -178,7 +178,7 @@ const Problems = () => {
               <h3 className="text-2xl font-semibold text-gray-800 mb-4">Fast Process</h3>
               <p className="text-lg text-gray-600">Quick and efficient online process with minimal documentation, saving you valuable time</p>
             </motion.div>
-          </div>
+        </div>
         </motion.div>
 
         <motion.div 

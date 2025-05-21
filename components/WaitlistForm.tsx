@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sendWaitlistEmail } from '@/lib/emailjs';
 import emailjs from '@emailjs/browser';
+import { useRouter } from 'next/router';
 
 interface WaitlistFormProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     // Initialize EmailJS
@@ -43,6 +45,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
           fromCountry: '',
           university: '',
         });
+        router.push('/data-acquisition');
       }, 2000);
     } catch (error) {
       console.error('Form submission error:', error);

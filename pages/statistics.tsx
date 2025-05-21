@@ -140,9 +140,9 @@ const ChartSection = ({
     >
       <div className="h-[300px] relative">
         <ChartComponent data={chartData} options={options} />
-      </div>
+        </div>
     </motion.div>
-  );
+);
 };
 
 const Statistics: NextPage = () => {
@@ -222,20 +222,20 @@ const Statistics: NextPage = () => {
             delay={1}
           />
           <ChartSection 
-            title="Origin Countries" 
-            data={stats.countryBreakdown.from} 
+              title="Origin Countries" 
+              data={stats.countryBreakdown.from} 
             type="bar"
             delay={2}
-          />
+            />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <ChartSection 
-            title="Study Destinations" 
-            data={stats.countryBreakdown.study} 
+              title="Study Destinations" 
+              data={stats.countryBreakdown.study} 
             type="doughnut"
             delay={3}
-          />
+            />
           <ChartSection 
             title="Universities" 
             data={stats.universityBreakdown} 
