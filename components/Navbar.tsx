@@ -44,8 +44,10 @@ const Navbar = () => {
             </Link>
           </div>
           
-          <div className="flex space-x-8">
-            {/* Navigation links can be added here */}
+          <div className="flex items-center">
+            <Link href="/loan-dashboard" className="text-gray-600 hover:text-gray-900 transition-colors">
+              Payments
+            </Link>
           </div>
         </div>
       </div>

@@ -80,7 +80,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
             onClick={e => e.stopPropagation()}
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-              Join the Waitlist
+              Initial Approval
             </h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -172,7 +172,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
                   className="px-8 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors disabled:opacity-50"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Submitting...' : 'Join Waitlist'}
+                  {isSubmitting ? 'Submitting...' : 'Sign Up'}
                 </button>
               </div>
             </form>

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import { FaChartLine } from 'react-icons/fa';
 
 const LoanSanctioned = () => {
   const router = useRouter();
@@ -50,8 +51,8 @@ const LoanSanctioned = () => {
             </div>
             <div className="bg-[#F1FFF4] border border-[#31D15A]/20 p-6 rounded-xl">
               <h3 className="text-[#1A8F35] text-sm mb-1">Special Student Rate</h3>
-              <p className="text-[#1A8F35] text-2xl font-bold">2.99% p.a.</p>
-              <p className="text-[#1A8F35] text-sm mt-1">vs Industry Avg: 6.5% p.a.</p>
+              <p className="text-[#1A8F35] text-2xl font-bold">8.00% p.a.</p>
+              <p className="text-[#1A8F35] text-sm mt-1">vs Industry Avg: 11.5% p.a.</p>
             </div>
             <div className="bg-[#F8F9FF] p-6 rounded-xl">
               <h3 className="text-[#666666] text-sm mb-1">Flexible Loan Term</h3>
@@ -133,6 +134,17 @@ const LoanSanctioned = () => {
                 <p className="text-[#666666]">Funds will be disbursed to your university</p>
               </div>
             </div>
+          </div>
+
+          {/* View Dashboard Button */}
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => router.push('/loan-dashboard')}
+              className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2"
+            >
+              <FaChartLine />
+              View Your Loan Dashboard
+            </button>
           </div>
         </div>
       </div>

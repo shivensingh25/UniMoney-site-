@@ -46,7 +46,7 @@ const Problems = () => {
     {
       icon: <FaPercentage />,
       title: "High Interest Rates",
-      description: "Traditional banks in many countries charge international students steep interest rates — often 10–14% — making education loans unaffordable for many deserving students."
+      description: "Traditional banks in many countries charge international students steep interest rates — often 11.5–14% — making education loans unaffordable for many deserving students."
     },
     {
       icon: <FaExchangeAlt />,
