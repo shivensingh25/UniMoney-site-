@@ -77,7 +77,7 @@ const Hero = () => {
             }`}>
               <div className="flex flex-col items-center justify-center space-y-6">
                 <div className="flex items-center justify-center space-x-4">
-                  <span className="text-center">Ditch domestic lenders - Get a student loan</span>
+                  <span className="text-center">Explore innovative international student financing options</span>
                 </div>
                 <div className="flex items-center justify-center space-x-3">
                   <span>tailored for</span>
@@ -113,7 +113,7 @@ const Hero = () => {
                 onClick={() => setIsWaitlistOpen(true)}
                 className="group relative inline-flex items-center justify-center bg-indigo-600 text-white font-medium py-4 px-8 rounded-full text-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
               >
-                <span className="relative z-10">Sign Up</span>
+                <span className="relative z-10">Call to Action</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </button>
             </div>

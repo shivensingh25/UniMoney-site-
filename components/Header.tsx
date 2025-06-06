@@ -4,6 +4,13 @@ import Image from 'next/image';
 const Header = () => {
   return (
     <header className="bg-white">
+      <div className="bg-yellow-50 border-b border-yellow-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <p className="text-sm text-yellow-800 text-center">
+            Disclaimer: This is a concept in development and not a licensed financial service. We are currently exploring regulatory requirements.
+          </p>
+        </div>
+      </div>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
