@@ -46,13 +46,13 @@ const CustomerInsights = () => {
             className="text-4xl font-bold text-center text-gray-900 mb-4"
             variants={fadeInUpVariants}
           >
-            What Our Customers Say
+            What International Students on Loans Are Saying
           </motion.h2>
           <motion.p 
             className="text-xl text-center text-gray-600 mb-16"
             variants={fadeInUpVariants}
           >
-            Strong interest in a local loan product that understands student needs
+            Real experiences from students navigating international education financing
           </motion.p>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
