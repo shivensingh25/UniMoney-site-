@@ -16,9 +16,22 @@ const Navbar = () => {
       }
     };
 
+    // Add keyboard shortcut for metrics dashboard (Ctrl+Shift+M)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'M') {
+        e.preventDefault();
+        router.push('/metrics-dashboard');
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+    window.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [scrolled, router]);
 
   return (
     <>
@@ -52,7 +65,7 @@ const Navbar = () => {
               </Link>
             </div>
             
-            <div className="flex items-center">
+            <div className="flex items-center space-x-6">
               <Link href="/loan-dashboard" className="text-gray-600 hover:text-gray-900 transition-colors">
                 Payments
               </Link>

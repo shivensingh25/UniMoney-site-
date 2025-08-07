@@ -45,7 +45,9 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
           fromCountry: '',
           university: '',
         });
-        router.push('/data-acquisition');
+        if (router.pathname !== '/hidden-cta') {
+          router.push('/data-acquisition');
+        }
       }, 2000);
     } catch (error) {
       console.error('Form submission error:', error);

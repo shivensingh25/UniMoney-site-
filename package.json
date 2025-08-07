@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:migrate": "node -r dotenv/config lib/db/migrations/run.js"
+    "db:migrate": "node -r dotenv/config lib/db/migrations/run.js",
+    "db:metrics-migrate": "node scripts/run-migration.js",
+    "vercel:setup": "node scripts/vercel-setup.js",
+    "db:test": "node scripts/test-database.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

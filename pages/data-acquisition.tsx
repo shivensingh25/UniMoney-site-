@@ -30,7 +30,7 @@ const DataAcquisition = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    
+    // No metrics tracking
     // Here you would typically save the form data
     // For now, we'll just redirect to the documents upload page
     setTimeout(() => {

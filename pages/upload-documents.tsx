@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import { trackFormSubmission } from '@/lib/metrics';
 
 interface DocumentUpload {
   name: string;
@@ -103,6 +104,7 @@ const UploadDocuments = () => {
 
     // Show tick animation
     setShowAnimation(true);
+    trackFormSubmission('document_upload', true);
 
     // Wait for animation and then redirect
     setTimeout(() => {

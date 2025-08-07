@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { pgTable, text, timestamp, uuid, integer, boolean } from 'drizzle-orm/pg-core';
 
 export const waitlistSubmissions = pgTable('waitlist_submissions', {
   id: uuid('id').primaryKey().defaultRandom(),

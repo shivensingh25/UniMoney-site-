@@ -110,7 +110,10 @@ const Hero = () => {
               isTypingDone ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
             }`}>
               <button 
-                onClick={() => setIsWaitlistOpen(true)}
+                id="cta-button"
+                onClick={() => {
+                  setIsWaitlistOpen(true);
+                }}
                 className="group relative inline-flex items-center justify-center bg-indigo-600 text-white font-medium py-4 px-8 rounded-full text-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
               >
                 <span className="relative z-10">Call to Action</span>

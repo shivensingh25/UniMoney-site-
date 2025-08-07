@@ -11,8 +11,8 @@ export const sendWaitlistEmail = async (formData: {
 }) => {
   try {
     const response = await emailjs.send(
-      'service_alm33rh',
-      'template_p7qx7eb',
+      'service_rytj33e',
+      'template_4zhtshr',
       {
         from_email: formData.email,
         reply_to: formData.email,
