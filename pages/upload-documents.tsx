@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
-import { trackFormSubmission } from '@/lib/metrics';
 
 interface DocumentUpload {
   name: string;
@@ -102,55 +101,36 @@ const UploadDocuments = () => {
       return;
     }
 
-    // Show tick animation
+    // Simulate document upload process
+    setSubmitted(true);
     setShowAnimation(true);
-    trackFormSubmission('document_upload', true);
-
-    // Wait for animation and then redirect
+    
+    // Simulate processing time
     setTimeout(() => {
-      setSubmitted(true);
+      setShowAnimation(false);
+      // Redirect to loan sanctioned page after successful upload
       setTimeout(() => {
         router.push('/loan-sanctioned');
-      }, 500);
-    }, 1500);
+      }, 2000);
+    }, 3000);
   };
 
-  if (showAnimation) {
+  if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e8f5e9] via-[#c8e6c9] to-[#b2dfdb]">
-        <div className="relative">
-          <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center"
-          >
-            <motion.svg
-              className="w-16 h-16 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <motion.path
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={3}
-                d="M5 13l4 4L19 7"
-              />
-            </motion.svg>
-          </motion.div>
-          {submitted && (
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="absolute top-full mt-4 text-center w-full text-lg font-medium text-green-700"
-            >
-              Documents Verified Successfully!
-            </motion.p>
+        <div className="bg-white p-10 rounded-2xl shadow-xl text-center max-w-md">
+          {showAnimation ? (
+            <div className="space-y-4">
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-indigo-600 mx-auto"></div>
+              <h2 className="text-2xl font-bold text-gray-900">Processing Documents...</h2>
+              <p className="text-gray-600">Please wait while we verify your documents.</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="text-green-500 text-6xl">✓</div>
+              <h2 className="text-2xl font-bold text-gray-900">Documents Uploaded Successfully!</h2>
+              <p className="text-gray-600">Redirecting to loan status...</p>
+            </div>
           )}
         </div>
       </div>
@@ -158,62 +138,69 @@ const UploadDocuments = () => {
   }
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-br from-[#e8f5e9] via-[#c8e6c9] to-[#b2dfdb]">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-white p-8 rounded-2xl shadow-xl">
-          <h2 className="text-3xl font-bold text-indigo-700 mb-6 font-display tracking-tight text-center">Required Documents</h2>
-          <p className="text-gray-600 mb-8 text-center">Please upload all required documents for your international student loan application.</p>
-          
-          {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-              {error}
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {documents.map((doc, index) => (
-              <div key={doc.name} className="p-4 border border-gray-200 rounded-lg hover:border-indigo-200 transition-colors">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div>
-                    <label className="block font-medium text-gray-700">
-                      {doc.name.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
-                      {doc.required && <span className="text-red-500 ml-1">*</span>}
-                    </label>
-                    <p className="text-sm text-gray-500 mt-1">{doc.description}</p>
-                  </div>
-                  <div className="flex-shrink-0">
-                    <input
-                      type="file"
-                      onChange={(e) => handleFileChange(index, e.target.files?.[0] || null)}
-                      className="w-full text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 
-                               file:text-sm file:font-medium file:bg-indigo-50 file:text-indigo-700 
-                               hover:file:bg-indigo-100 transition-all cursor-pointer"
-                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-                    />
-                  </div>
-                </div>
-                {doc.file && (
-                  <div className="mt-2 text-sm text-green-600 flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                    </svg>
-                    {doc.file.name}
-                  </div>
-                )}
-              </div>
-            ))}
-            
-            <div className="flex justify-end mt-8">
-              <button
-                type="submit"
-                className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 
-                         transition-colors text-base tracking-wide flex items-center justify-center min-w-[200px]"
-              >
-                Submit Documents
-              </button>
-            </div>
-          </form>
+    <div className="min-h-screen bg-gradient-to-br from-[#e8f5e9] via-[#c8e6c9] to-[#b2dfdb] py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Upload Required Documents</h1>
+          <p className="text-xl text-gray-600">Please upload all required documents to complete your loan application</p>
         </div>
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <p className="text-red-800">{error}</p>
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {documents.map((doc, index) => (
+              <motion.div
+                key={doc.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-lg p-6 shadow-md"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {doc.name.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                  </h3>
+                  {doc.required && (
+                    <span className="text-red-500 text-sm font-medium">Required</span>
+                  )}
+                </div>
+                
+                <p className="text-gray-600 mb-4 text-sm">{doc.description}</p>
+                
+                <div className="space-y-2">
+                  <input
+                    type="file"
+                    id={doc.name}
+                    onChange={(e) => handleFileChange(index, e.target.files?.[0] || null)}
+                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                  />
+                  
+                  {doc.file && (
+                    <div className="flex items-center space-x-2 text-sm text-green-600">
+                      <span>✓</span>
+                      <span>{doc.file.name}</span>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <button
+              type="submit"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300 transform hover:scale-105 shadow-lg"
+            >
+              Submit Documents
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

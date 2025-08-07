@@ -6,25 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "db:migrate": "node -r dotenv/config lib/db/migrations/run.js",
-    "db:metrics-migrate": "node scripts/run-migration.js",
-    "vercel:setup": "node scripts/vercel-setup.js",
-    "db:test": "node scripts/test-database.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-    "@neondatabase/serverless": "^1.0.0",
-    "@vercel/kv": "^3.0.0",
-    "chart.js": "^4.4.9",
-    "dotenv": "^16.5.0",
-    "drizzle-orm": "^0.43.1",
     "framer-motion": "^12.12.1",
-    "mongodb": "^6.16.0",
     "next": "13.5.6",
-    "pg": "^8.16.0",
     "react": "18.2.0",
-    "react-chartjs-2": "^5.3.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.12.0"
   },

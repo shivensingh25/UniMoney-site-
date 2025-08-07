@@ -17,10 +17,9 @@ const Navbar = () => {
     };
 
     // Add keyboard shortcut for metrics dashboard (Ctrl+Shift+M)
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && e.key === 'M') {
-        e.preventDefault();
-        router.push('/metrics-dashboard');
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey && event.shiftKey && event.key === 'M') {
+        // Remove metrics dashboard shortcut
       }
     };
 
