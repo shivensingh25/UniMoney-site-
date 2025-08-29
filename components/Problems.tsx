@@ -127,8 +127,8 @@ const Problems = () => {
               <div className="text-4xl text-indigo-600 mb-6 flex justify-center">
                 <FaExchangeAlt />
               </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">Save on Forex</h3>
-              <p className="text-lg text-gray-600">Save on forex both while getting a loan and repaying it, with our competitive exchange rates</p>
+              <h3 className="text-2xl font-semibold text-gray-800 mb-4">Faster process</h3>
+              <p className="text-lg text-gray-600">Fill out one simple form and instantly get matched with multiple loan options.</p>
             </motion.div>
             <motion.div 
               initial="initial"
@@ -151,8 +151,8 @@ const Problems = () => {
               <div className="text-4xl text-indigo-600 mb-6 flex justify-center">
                 <FaPiggyBank />
               </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">Better Rates</h3>
-              <p className="text-lg text-gray-600">Competitive interest rates that make your education more affordable and your dreams achievable</p>
+              <h3 className="text-2xl font-semibold text-gray-800 mb-4">Transparent comparison</h3>
+              <p className="text-lg text-gray-600">Compare lenders side-by-side with clear terms and no hidden catches.</p>
             </motion.div>
             <motion.div 
               initial="initial"
@@ -175,8 +175,8 @@ const Problems = () => {
               <div className="text-4xl text-indigo-600 mb-6 flex justify-center">
                 <FaBolt />
               </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">Fast Process</h3>
-              <p className="text-lg text-gray-600">Quick and efficient online process with minimal documentation, saving you valuable time</p>
+              <h3 className="text-2xl font-semibold text-gray-800 mb-4">Higher approval odds</h3>
+              <p className="text-lg text-gray-600">Smart matching boosts your chances of getting approved for the right loan.</p>
             </motion.div>
         </div>
         </motion.div>
