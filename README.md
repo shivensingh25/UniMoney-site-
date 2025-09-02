@@ -38,3 +38,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+ 
+## Airtable Waitlist Storage
+
+The waitlist form stores submissions in Airtable via the API route at `pages/api/waitlist.ts`.
+
+1. Create an Airtable base and a table (e.g. `Waitlist`) with the following fields (case-sensitive):
+   - `Email` (single line text)
+   - `HardestPart` (single line text or single select)
+   - `FromCountry` (single line text)
+   - `University` (single line text)
+   - Optional: `Source` (single line text), `SubmittedAt` (date)
+
+2. Create a Personal Access Token in Airtable with read/write access to that base.
+
+3. Add these environment variables in a `.env.local` file at the project root:
+
+```
+AIRTABLE_API_KEY=your_airtable_personal_access_token
+AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
+AIRTABLE_TABLE_NAME=Waitlist
+```
+
+4. Restart the dev server after changing env vars.
+
+Notes:
+- The client still triggers a non-blocking EmailJS notification if configured. You can remove that by deleting the usage of `sendWaitlistEmail` in `components/WaitlistForm.tsx`.
+- The API returns `Saved to Airtable` on success and logs Airtable errors to the server console.

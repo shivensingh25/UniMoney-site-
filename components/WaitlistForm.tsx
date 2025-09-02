@@ -22,7 +22,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    // Initialize EmailJS
+    // Initialize EmailJS (kept for sending notification emails, optional)
     emailjs.init('PYoFuUb5yNF4hZiXJ');
   }, []);
 
@@ -33,7 +33,26 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
     setSubmitSuccess(false);
 
     try {
-      await sendWaitlistEmail(formData);
+      // Save to Airtable via API route
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({} as any));
+        const details = err?.details?.error?.message
+          || (typeof err?.details === 'string' ? err.details : '')
+          || (err?.details ? JSON.stringify(err.details) : '');
+        const message = [err?.error || 'Failed to submit form', details]
+          .filter(Boolean)
+          .join(': ');
+        throw new Error(message);
+      }
+
+      // Optionally send notification email via EmailJS (non-blocking)
+      sendWaitlistEmail(formData).catch(() => {});
       setSubmitSuccess(true);
       setTimeout(() => {
         onClose();
