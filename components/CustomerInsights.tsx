@@ -63,8 +63,8 @@ const CustomerInsights = () => {
             >
               <div className="relative h-96 w-full">
                 <Image
-                  src="/insights/student-quote.png"
-                  alt="Student Quote"
+                  src="/insights/ChatGPT Image Sep 27, 2025, 02_32_08 PM.png"
+                  alt="Student stressed about education loan"
                   fill
                   priority
                   style={{ objectFit: 'contain' }}

@@ -1,12 +1,5 @@
-import { FaPercentage, FaExchangeAlt, FaClock, FaFileAlt, FaLinkedin, FaInstagram, FaDollarSign, FaPiggyBank, FaBolt } from 'react-icons/fa';
+import { FaExchangeAlt, FaLinkedin, FaInstagram, FaPiggyBank, FaBolt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-
-interface ProblemCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  delay: number;
-}
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -14,57 +7,7 @@ const fadeInUp = {
   transition: { duration: 0.6 }
 };
 
-const ProblemCard: React.FC<ProblemCardProps> = ({ icon, title, description, delay }) => {
-  return (
-    <motion.div 
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true }}
-      variants={{
-        initial: { opacity: 0, y: 50 },
-        animate: { 
-          opacity: 1, 
-          y: 0,
-          transition: {
-            duration: 0.6,
-            delay: delay * 0.2
-          }
-        }
-      }}
-      whileHover={{ scale: 1.03 }}
-      className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-    >
-      <div className="text-4xl text-indigo-600 mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold mb-3 text-gray-800">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </motion.div>
-  );
-};
-
 const Problems = () => {
-  const problems = [
-    {
-      icon: <FaPercentage />,
-      title: "High Interest Rates",
-      description: "Traditional banks in many countries charge international students steep interest rates — often 11.5–14% — making education loans unaffordable for many deserving students."
-    },
-    {
-      icon: <FaExchangeAlt />,
-      title: "Currency Volatility",
-      description: "Exchange rates keep changing, making it hard to predict how much you'll actually pay back — especially over long loan periods."
-    },
-    {
-      icon: <FaFileAlt />,
-      title: "Complex and Slow Process",
-      description: "Applications require piles of documents, lengthy verifications, and can take weeks or even months — just to get a response."
-    },
-    {
-      icon: <FaClock />,
-      title: "Difficult Loan Repayment",
-      description: "Rigid repayment schedules don't account for job delays or visa issues — students often struggle to keep up after graduating."
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,34 +16,7 @@ const Problems = () => {
           whileInView="animate"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Why Current Student Loans Don't Work
-          </h2>
-          <p className="text-xl text-gray-600">
-            Understanding the challenges international students face
-          </p>
-        </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {problems.map((problem, index) => (
-            <ProblemCard
-              key={index}
-              icon={problem.icon}
-              title={problem.title}
-              description={problem.description}
-              delay={index}
-            />
-          ))}
-        </div>
-
-        <motion.div 
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          className="mt-24 text-center"
+          className="text-center"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-12">
             Why Choose Us?

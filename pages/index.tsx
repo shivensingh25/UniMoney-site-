@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import Layout from '../components/Layout';
 import Hero from '../components/Hero';
 import SocialProof from '../components/SocialProof';
 import Founders from '../components/Founders';
@@ -7,13 +8,13 @@ import CustomerInsights from '../components/CustomerInsights';
 
 const Home: NextPage = () => {
   return (
-    <main>
+    <Layout>
       <Hero />
       <Problems />
       <CustomerInsights />
       <Founders />
       <SocialProof />
-    </main>
+    </Layout>
   );
 };
 

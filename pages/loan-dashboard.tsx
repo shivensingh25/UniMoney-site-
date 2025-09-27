@@ -14,6 +14,7 @@ import {
   FaUser
 } from 'react-icons/fa';
 import { useRouter } from 'next/router';
+import Layout from '../components/Layout';
 
 const LoanDashboard = () => {
   const router = useRouter();
@@ -42,7 +43,8 @@ const LoanDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e8f5e9] via-[#c8e6c9] to-[#b2dfdb] p-6 pt-24">
+    <Layout>
+      <div className="min-h-screen bg-gradient-to-br from-[#e8f5e9] via-[#c8e6c9] to-[#b2dfdb] p-6 pt-32">
       <div className="max-w-7xl mx-auto">
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -219,7 +221,8 @@ const LoanDashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

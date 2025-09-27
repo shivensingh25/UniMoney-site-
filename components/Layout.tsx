@@ -1,4 +1,5 @@
-import Header from './Header';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -6,9 +7,12 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div>
-      <Header />
-      {children}
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        {children}
+      </main>
+      <Footer />
     </div>
   );
 };

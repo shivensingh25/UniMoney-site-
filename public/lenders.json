@@ -1,0 +1,117 @@
+[
+  {
+    "id": "bank_alpha",
+    "name": "Alpha Bank",
+    "type": "Bank",
+    "rateRange": [10.0, 12.5],
+    "processingFeeFlat": 5000,
+    "processingFeePct": 0.008,
+    "requiresCollateral": true,
+    "allowsCosigner": true,
+    "approvalDays": 10,
+    "moratoriumMonths": 6,
+    "maxLoanInINR": 8000000,
+    "notes": ["Low rates with collateral", "Prefers STEM"]
+  },
+  {
+    "id": "nbfc_beta",
+    "name": "Beta Finance",
+    "type": "NBFC",
+    "rateRange": [11.5, 14.0],
+    "processingFeeFlat": 3000,
+    "processingFeePct": 0.012,
+    "requiresCollateral": false,
+    "allowsCosigner": true,
+    "approvalDays": 5,
+    "moratoriumMonths": 6,
+    "maxLoanInINR": 6000000,
+    "notes": ["Fast approval", "Popular for business and CS"]
+  },
+  {
+    "id": "intl_gamma",
+    "name": "Gamma International",
+    "type": "International",
+    "rateRange": [10.5, 13.5],
+    "processingFeeFlat": 0,
+    "processingFeePct": 0.02,
+    "requiresCollateral": false,
+    "allowsCosigner": false,
+    "approvalDays": 7,
+    "moratoriumMonths": 9,
+    "maxLoanInINR": 9000000,
+    "notes": ["No collateral", "Covers living expenses"]
+  },
+  {
+    "id": "bank_delta",
+    "name": "Delta Bank",
+    "type": "Bank",
+    "rateRange": [9.8, 11.8],
+    "processingFeeFlat": 4000,
+    "processingFeePct": 0.009,
+    "requiresCollateral": true,
+    "allowsCosigner": true,
+    "approvalDays": 12,
+    "moratoriumMonths": 6,
+    "maxLoanInINR": 10000000,
+    "notes": ["Best for high income families"]
+  },
+  {
+    "id": "nbfc_epsilon",
+    "name": "Epsilon Capital",
+    "type": "NBFC",
+    "rateRange": [12.2, 15.5],
+    "processingFeeFlat": 2500,
+    "processingFeePct": 0.015,
+    "requiresCollateral": false,
+    "allowsCosigner": true,
+    "approvalDays": 3,
+    "moratoriumMonths": 6,
+    "maxLoanInINR": 7000000,
+    "notes": ["Quickest approvals", "Flexible repayment"]
+  },
+  {
+    "id": "bank_zeta",
+    "name": "Zeta National Bank",
+    "type": "Bank",
+    "rateRange": [10.2, 12.0],
+    "processingFeeFlat": 6000,
+    "processingFeePct": 0.007,
+    "requiresCollateral": true,
+    "allowsCosigner": true,
+    "approvalDays": 9,
+    "moratoriumMonths": 6,
+    "maxLoanInINR": 8500000,
+    "notes": ["Strong for engineering", "Wide branch network"]
+  },
+  {
+    "id": "intl_eta",
+    "name": "Eta Global Loans",
+    "type": "International",
+    "rateRange": [11.0, 13.0],
+    "processingFeeFlat": 0,
+    "processingFeePct": 0.018,
+    "requiresCollateral": false,
+    "allowsCosigner": false,
+    "approvalDays": 8,
+    "moratoriumMonths": 12,
+    "maxLoanInINR": 9500000,
+    "notes": ["Great for non-collateral", "Supports living costs"]
+  },
+  {
+    "id": "nbfc_theta",
+    "name": "Theta FinServe",
+    "type": "NBFC",
+    "rateRange": [12.8, 16.0],
+    "processingFeeFlat": 2000,
+    "processingFeePct": 0.017,
+    "requiresCollateral": false,
+    "allowsCosigner": true,
+    "approvalDays": 4,
+    "moratoriumMonths": 6,
+    "maxLoanInINR": 5000000,
+    "notes": ["Popular among humanities", "Lenient documentation"]
+  }
+]
+
+
+
