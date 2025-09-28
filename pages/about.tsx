@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 
 const About = () => {
+  const router = useRouter();
   return (
     <Layout>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 pt-32 pb-16 relative overflow-hidden">
@@ -865,32 +867,7 @@ const About = () => {
               Join thousands of students who have found their perfect loan match with UniMoney.
             </motion.p>
             
-            {/* Success stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 1.1 }}
-              className="flex justify-center items-center space-x-8 mb-8 text-white/80"
-            >
-              {[
-                { icon: "⭐", text: "4.9/5 Rating" },
-                { icon: "🏆", text: "Award Winning" },
-                { icon: "🔒", text: "100% Secure" }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 1.3 + (index * 0.1) }}
-                  className="flex items-center space-x-2"
-                >
-                  <span className="text-lg">{item.icon}</span>
-                  <span className="text-sm font-medium">{item.text}</span>
-                </motion.div>
-              ))}
-            </motion.div>
+
             
             {/* Enhanced CTA Button */}
             <motion.div
@@ -900,6 +877,7 @@ const About = () => {
               transition={{ duration: 0.8, delay: 1.5 }}
             >
               <motion.button 
+                onClick={() => router.push('/loan-compare')}
                 className="relative group px-10 py-5 bg-white text-indigo-600 font-bold rounded-2xl text-lg shadow-2xl overflow-hidden"
                 whileHover={{ 
                   scale: 1.05,
@@ -950,17 +928,6 @@ const About = () => {
                   </motion.span>
                 </span>
               </motion.button>
-            </motion.div>
-            
-            {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 1.7 }}
-              className="mt-8 text-indigo-200 text-sm"
-            >
-              <p>✨ No hidden fees • 🔒 Bank-level security • ⚡ Instant approval</p>
             </motion.div>
           </div>
         </motion.div>
