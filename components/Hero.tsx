@@ -4,14 +4,13 @@ import WaitlistForm from './WaitlistForm';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
-// Particle component for background animation
-const Particle = ({ delay, duration, size, color, x, y }: { delay: number; duration: number; size: number; color: string; x: number; y: number }) => (
+// Particle component for background animation with UniMoney logos
+const Particle = ({ delay, duration, size, x, y }: { delay: number; duration: number; size: number; x: number; y: number }) => (
   <motion.div
-    className="absolute rounded-full opacity-20"
+    className="absolute opacity-20"
     style={{
       width: size,
       height: size,
-      backgroundColor: color,
       left: `${x}%`,
       top: `${y}%`,
     }}
@@ -27,7 +26,14 @@ const Particle = ({ delay, duration, size, color, x, y }: { delay: number; durat
       delay: delay,
       ease: "easeInOut",
     }}
-  />
+  >
+    <Image
+      src="/brand/logo/Logo.png"
+      alt="UniMoney Logo"
+      fill
+      className="object-contain"
+    />
+  </motion.div>
 );
 
 const Hero = () => {
@@ -50,8 +56,7 @@ const Hero = () => {
     id: i,
     delay: Math.random() * 2,
     duration: 3 + Math.random() * 4,
-    size: 4 + Math.random() * 8,
-    color: ['#3B82F6', '#8B5CF6', '#06B6D4', '#10B981'][Math.floor(Math.random() * 4)],
+    size: 16 + Math.random() * 16,
     x: Math.random() * 100,
     y: Math.random() * 100,
   }));
@@ -66,7 +71,6 @@ const Hero = () => {
             delay={particle.delay}
             duration={particle.duration}
             size={particle.size}
-            color={particle.color}
             x={particle.x}
             y={particle.y}
           />
@@ -246,26 +250,99 @@ const Hero = () => {
                 Trusted by students from
               </motion.p>
               <div className="flex flex-wrap justify-center items-center gap-8">
-                {['Monash University', 'University of Melbourne', 'RMIT University'].map((university, index) => (
-                  <motion.div 
-                    key={university}
-                    className="text-lg font-semibold text-gray-400 opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-pointer"
-                    initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                    animate={{ opacity: 0.6, y: 0, scale: 1 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 3.4 + (index * 0.2),
-                      ease: "easeOut"
+                <motion.div 
+                  className="relative px-6 py-3 bg-white/80 backdrop-blur-sm border-2 border-indigo-200 rounded-xl shadow-lg font-bold text-indigo-700 cursor-pointer overflow-hidden"
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1,
+                    borderColor: [
+                      "rgb(199, 210, 254)",
+                      "rgb(129, 140, 248)",
+                      "rgb(199, 210, 254)"
+                    ],
+                    boxShadow: [
+                      "0 4px 20px rgba(79, 70, 229, 0.1)",
+                      "0 8px 40px rgba(79, 70, 229, 0.3)",
+                      "0 4px 20px rgba(79, 70, 229, 0.1)"
+                    ]
+                  }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 3.4,
+                    ease: "easeOut",
+                    borderColor: {
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    },
+                    boxShadow: {
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
+                  whileHover={{ 
+                    scale: 1.08,
+                    y: -4,
+                    borderColor: "rgb(99, 102, 241)",
+                    boxShadow: "0 12px 50px rgba(79, 70, 229, 0.4)",
+                    backgroundColor: "rgba(255, 255, 255, 0.95)"
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {/* Animated background gradient */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-blue-500/10 opacity-0"
+                    animate={{
+                      opacity: [0, 0.3, 0],
+                      background: [
+                        "linear-gradient(90deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1), rgba(59,130,246,0.1))",
+                        "linear-gradient(180deg, rgba(139,92,246,0.1), rgba(59,130,246,0.1), rgba(99,102,241,0.1))",
+                        "linear-gradient(270deg, rgba(59,130,246,0.1), rgba(99,102,241,0.1), rgba(139,92,246,0.1))"
+                      ]
                     }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      opacity: 1,
-                      color: "#4F46E5"
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  {/* Shimmer effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0"
+                    animate={{
+                      x: ['-100%', '200%'],
+                      opacity: [0, 1, 0]
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  <motion.span
+                    className="relative z-10 text-lg font-bold"
+                    animate={{
+                      color: [
+                        "rgb(67, 56, 202)",
+                        "rgb(99, 102, 241)", 
+                        "rgb(67, 56, 202)"
+                      ]
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
                     }}
                   >
-                    {university}
-                  </motion.div>
-                ))}
+                    🎓 Monash University
+                  </motion.span>
+                </motion.div>
               </div>
             </motion.div>
           </div>

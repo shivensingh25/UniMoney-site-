@@ -26,7 +26,6 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Compare Loans', href: '/loan-compare' },
     { name: 'About', href: '/about' }
   ];
 
