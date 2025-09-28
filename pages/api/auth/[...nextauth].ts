@@ -6,11 +6,14 @@ import { MongoClient } from 'mongodb'
 // MongoDB setup for user storage
 let clientPromise: Promise<MongoClient>
 
-if (process.env.MONGODB_URI) {
-  const client = new MongoClient(process.env.MONGODB_URI)
+const mongoUri = process.env.MONGODB_URI || process.env.DATABASE_URL;
+
+if (mongoUri) {
+  const client = new MongoClient(mongoUri)
   clientPromise = client.connect()
 } else {
-  throw new Error('Please add your MongoDB URI to .env.local')
+  console.error('MONGODB_URI not found. Available env vars:', Object.keys(process.env).filter(key => key.includes('MONGO') || key.includes('DATABASE')))
+  throw new Error('MONGODB_URI or DATABASE_URL environment variable is required')
 }
 
 // Admin emails that get admin access
@@ -44,6 +47,9 @@ export const authOptions = {
   pages: {
     signIn: '/loan-compare',
   },
+  
+  // Add these for better production support
+  secret: process.env.NEXTAUTH_SECRET,
   
   events: {
     async signIn({ user, isNewUser }: any) {
