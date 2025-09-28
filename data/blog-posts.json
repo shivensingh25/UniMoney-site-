@@ -1,0 +1,60 @@
+[
+  {
+    "title": "test blog post ",
+    "slug": "test-blog-post",
+    "excerpt": "sample test psot",
+    "content": "just testing if it publishes ",
+    "category": "Loan Guides",
+    "tags": [],
+    "featuredImage": "/insights/ChatGPT Image Sep 27, 2025, 02_32_08 PM.png",
+    "author": "shiven singh",
+    "readingTime": 2,
+    "status": "published",
+    "publishedAt": "28/09/2025",
+    "id": "1759043759490"
+  },
+  {
+    "id": "1",
+    "title": "Complete Guide to Student Loans for International Students in Australia",
+    "slug": "student-loans-australia-guide",
+    "excerpt": "Everything you need to know about securing education funding for your Australian university journey.",
+    "content": "# Complete Guide to Student Loans for International Students in Australia\n\nStudying in Australia as an international student is an incredible opportunity, but funding your education can be challenging. This comprehensive guide will walk you through everything you need to know about student loans and financing options.\n\n## Understanding Australian Education Costs\n\nInternational students in Australia face several costs:\n- **Tuition fees**: AUD $20,000 - $45,000 per year\n- **Living expenses**: AUD $21,000 - $25,000 per year  \n- **Health insurance**: AUD $500 - $650 per year\n- **Books and supplies**: AUD $500 - $1,000 per year\n\n## Student Loan Options\n\n### 1. Private Education Loans\nMost international students rely on private loans from:\n- Banks in your home country\n- International education loan providers\n- Australian private lenders\n\n### 2. University-specific Scholarships\nMany universities offer partial funding:\n- Merit-based scholarships\n- Need-based financial aid\n- Country-specific programs\n\n## Application Requirements\n\n**Typical documentation needed:**\n- University acceptance letter\n- Financial statements\n- Credit history (if available)\n- Co-signer information\n- Passport and visa documents\n\n## Tips for Success\n\n1. **Start early**: Begin your loan application process 6-12 months before enrollment\n2. **Compare rates**: Shop around for the best interest rates and terms\n3. **Understand repayment**: Know when repayment begins and what your monthly payments will be\n4. **Budget wisely**: Create a comprehensive budget including all expenses\n\nYour education is an investment in your future - make sure you have the right financial plan in place!",
+    "featuredImage": "/insights/student-quote.png",
+    "category": "Study Abroad",
+    "author": {
+      "name": "Praditha",
+      "avatar": "/founders/Praditha.jpeg"
+    },
+    "publishedAt": "Sep 25, 2025",
+    "readingTime": 8,
+    "tags": [
+      "Australia",
+      "Student Loans",
+      "International Education"
+    ],
+    "featured": true,
+    "status": "published"
+  },
+  {
+    "id": "2",
+    "title": "Understanding Interest Rates: Fixed vs Variable Loans",
+    "slug": "fixed-vs-variable-interest-rates",
+    "excerpt": "Learn the key differences between fixed and variable interest rates and how to choose the best option.",
+    "content": "# Understanding Interest Rates: Fixed vs Variable Loans\n\nOne of the most important decisions when taking out a student loan is choosing between fixed and variable interest rates. Let's explore the differences and help you make the right choice.\n\n## Fixed Interest Rates\n\nFixed rates remain constant throughout your loan term.\n\n**Advantages:**\n- Predictable monthly payments\n- Protection from rate increases\n- Easy budgeting and financial planning\n\n**Disadvantages:**\n- Usually start higher than variable rates\n- No benefit from falling market rates\n\n## Variable Interest Rates\n\nVariable rates fluctuate with market conditions.\n\n**Advantages:**\n- Often start lower than fixed rates\n- Can benefit from declining market rates\n- Potential for long-term savings\n\n**Disadvantages:**\n- Payment uncertainty\n- Risk of significant rate increases\n- Harder to budget long-term\n\n## Making Your Decision\n\nConsider these factors:\n- Your risk tolerance\n- Current market conditions\n- Loan repayment timeline\n- Financial stability\n\nMost financial experts recommend fixed rates for students who prefer payment certainty, especially in uncertain economic times.",
+    "featuredImage": "/insights/ChatGPT Image Sep 27, 2025, 02_32_08 PM.png",
+    "category": "Financial Tips",
+    "author": {
+      "name": "Shiven",
+      "avatar": "/founders/Shiven.jpeg"
+    },
+    "publishedAt": "Sep 22, 2025",
+    "readingTime": 5,
+    "tags": [
+      "Interest Rates",
+      "Financial Planning",
+      "Loans"
+    ],
+    "featured": false,
+    "status": "published"
+  }
+]

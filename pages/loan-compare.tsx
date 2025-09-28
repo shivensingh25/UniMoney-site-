@@ -1,13 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useSession, signIn, getSession } from 'next-auth/react';
 import Layout from '../components/Layout';
+import { FaGoogle, FaArrowRight } from 'react-icons/fa';
 
 type Intake = 'Feb' | 'Jul';
 
 export default function LoanCompare() {
   const router = useRouter();
+  const { data: session, status } = useSession();
+  const [showAuthOptions, setShowAuthOptions] = useState(true);
+  const [userAuth, setUserAuth] = useState<{isAuthenticated: boolean, isAdmin: boolean, user?: any}>({
+    isAuthenticated: false,
+    isAdmin: false
+  });
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -21,6 +29,72 @@ export default function LoanCompare() {
   });
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+
+  // Check authentication status
+  useEffect(() => {
+    if (status === 'loading') return; // Still loading
+
+    if (session) {
+      const user = session.user as any;
+      
+      setUserAuth({
+        isAuthenticated: true,
+        isAdmin: user.isAdmin || false,
+        user: session.user
+      });
+      
+      setShowAuthOptions(false);
+      
+      // If user is admin, redirect to admin dashboard
+      if (user.isAdmin) {
+        router.push('/admin/dashboard');
+        return;
+      }
+      
+      // Pre-fill form with user data for regular users
+      setForm(prev => ({
+        ...prev,
+        fullName: session.user?.name || '',
+        email: session.user?.email || ''
+      }));
+    }
+  }, [session, status, router]);
+
+  const handleGoogleSignIn = async () => {
+    setError('');
+    setIsLoading(true);
+    
+    try {
+      // Use NextAuth to sign in with Google
+      const result = await signIn('google', {
+        redirect: false, // Don't redirect immediately
+        callbackUrl: '/loan-compare'
+      });
+      
+      if (result?.error) {
+        if (result.error === 'Configuration') {
+          setError('Google OAuth is not configured yet. Please contact support or use "Skip Sign In" for now.');
+        } else {
+          setError('Google Sign-In failed. Please try again or use "Skip Sign In".');
+        }
+      }
+      // The useEffect will handle the redirect after successful sign-in
+      
+    } catch (error) {
+      setError('Google OAuth is not available. Please use "Skip Sign In" to continue.');
+      console.error('Google Sign-In error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSkipSignIn = () => {
+    setShowAuthOptions(false);
+    setUserAuth({
+      isAuthenticated: false,
+      isAdmin: false
+    });
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
@@ -100,8 +174,54 @@ export default function LoanCompare() {
         </div>
       </div>
 
-      {/* Form Section */}
-      <motion.div 
+      {/* Authentication Options */}
+      {showAuthOptions && (
+        <div className="max-w-md mx-auto mb-8 px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100"
+          >
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Get Started</h2>
+              <p className="text-gray-600">Sign in for a personalized experience or continue as guest</p>
+            </div>
+
+            <div className="space-y-4">
+              {/* Google Sign In Button */}
+              <motion.button
+                onClick={handleGoogleSignIn}
+                className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-300 text-gray-700 py-3 px-6 rounded-xl font-medium hover:bg-gray-50 hover:border-gray-400 transition-all duration-200"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <FaGoogle className="text-red-500 text-lg" />
+                Continue with Google
+              </motion.button>
+
+              {/* Skip Sign In Button */}
+              <motion.button
+                onClick={handleSkipSignIn}
+                className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-xl font-medium hover:from-indigo-700 hover:to-purple-700 transition-all duration-200"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Skip Sign In
+                <FaArrowRight className="text-sm" />
+              </motion.button>
+            </div>
+
+            <p className="text-xs text-gray-500 text-center mt-4">
+              By continuing, you agree to our Terms of Service and Privacy Policy
+            </p>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Form Section - Only show after authentication choice */}
+      {!showAuthOptions && (
+        <motion.div 
         initial={{ opacity: 0, y: 20 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ duration: 0.5 }} 
@@ -271,6 +391,7 @@ export default function LoanCompare() {
           </form>
         </div>
       </motion.div>
+      )}
       </div>
     </Layout>
   );

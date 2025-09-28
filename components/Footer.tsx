@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-4 bg-gradient-to-r from-indigo-500 to-purple-500 bg-opacity-20 backdrop-blur-sm rounded-xl px-4 py-3 w-fit border border-indigo-300 border-opacity-30">
               <div className="relative w-10 h-10 mr-3">
                 <Image
                   src="/brand/logo/Logo.png"
@@ -17,7 +17,7 @@ const Footer = () => {
                   className="object-contain"
                 />
               </div>
-              <span className="text-2xl font-bold">UniMoney</span>
+              <span className="text-2xl font-bold text-white drop-shadow-sm">UniMoney</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
               Making international education accessible through smart loan comparison for students worldwide.
