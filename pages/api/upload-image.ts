@@ -5,6 +5,7 @@ import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from './auth/[...nextauth]'
+import { Octokit } from '@octokit/rest'
 
 // Configure API route to handle file uploads
 export const config = {
@@ -53,22 +54,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'File must be an image' })
     }
 
+    // Read file content
+    const fileContent = await fs.readFile(file.filepath);
+    const base64Content = fileContent.toString('base64');
+
     // Generate unique filename
     const fileExtension = path.extname(file.originalFilename || '')
     const uniqueFilename = `${uuidv4()}${fileExtension}`
-    
-    // Define upload directory and file path
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-    const filePath = path.join(uploadDir, uniqueFilename)
-    
-    // Ensure upload directory exists
-    await fs.mkdir(uploadDir, { recursive: true })
-    
-    // Copy the file from temp location to uploads folder
-    await fs.copyFile(file.filepath, filePath)
-    
-    // Return the URL path for the uploaded image
-    const imageUrl = `/uploads/${uniqueFilename}`
+
+    // Upload to GitHub
+    const octokit = new Octokit({
+      auth: process.env.GITHUB_TOKEN
+    });
+
+    const uploadResponse = await octokit.rest.repos.createOrUpdateFileContents({
+      owner: 'shivensingh25', // Your GitHub username
+      repo: 'UniMoney-site-', // Your repo name
+      path: `public/blog-images/${uniqueFilename}`,
+      message: `Add blog image: ${uniqueFilename}`,
+      content: base64Content,
+      branch: 'main'
+    });
+
+    // Return the GitHub raw URL for the uploaded image
+    const imageUrl = `https://raw.githubusercontent.com/shivensingh25/UniMoney-site-/main/public/blog-images/${uniqueFilename}`;
     
     return res.status(200).json({ 
       success: true,
