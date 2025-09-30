@@ -6,7 +6,9 @@ const nextConfig = {
     domains: [
       'via.placeholder.com',
       'images.unsplash.com',
-      'localhost'
+      'localhost',
+      'raw.githubusercontent.com',
+      'github.com'
     ],
   },
 }
