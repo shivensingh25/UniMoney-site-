@@ -327,6 +327,13 @@ const Blog = () => {
                         {post.excerpt}
                       </p>
                       
+                      <Link 
+                        href={`/blog/${post.slug}`}
+                        className="text-indigo-600 font-medium hover:text-indigo-700 transition-colors inline-flex items-center gap-1 mb-4"
+                      >
+                        Read more →
+                      </Link>
+                      
                       <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                         <div className="flex items-center gap-2">
                           <div className="relative w-6 h-6 rounded-full overflow-hidden bg-gray-200">
