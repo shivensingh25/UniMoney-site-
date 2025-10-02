@@ -2,9 +2,9 @@
 
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || '';
 
-// Check if GA is enabled
+// Check if GA is enabled - Allow in development for testing
 export const isProduction = process.env.NODE_ENV === 'production';
-export const isGAEnabled = GA_TRACKING_ID && isProduction;
+export const isGAEnabled = GA_TRACKING_ID; // Simplified to work in development too
 
 // Send pageview event to Google Analytics
 export const pageview = (url: string) => {
