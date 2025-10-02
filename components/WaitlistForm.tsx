@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { sendWaitlistEmail } from '@/lib/emailjs';
 import emailjs from '@emailjs/browser';
 import { useRouter } from 'next/router';
+import * as gtag from '../utils/gtag';
 
 interface WaitlistFormProps {
   isOpen: boolean;
@@ -53,6 +54,16 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
 
       // Optionally send notification email via EmailJS (non-blocking)
       sendWaitlistEmail(formData).catch(() => {});
+      
+      // Track successful form submission
+      gtag.trackFormSubmission('Waitlist Form');
+      gtag.event({
+        action: 'conversion',
+        category: 'engagement',
+        label: 'Waitlist Signup',
+        value: 1
+      });
+      
       setSubmitSuccess(true);
       setTimeout(() => {
         onClose();

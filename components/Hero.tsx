@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import WaitlistForm from './WaitlistForm';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import * as gtag from '../utils/gtag';
 
 // Particle component for background animation with UniMoney logos
 const Particle = ({ delay, duration, size, x, y }: { delay: number; duration: number; size: number; x: number; y: number }) => (
@@ -173,7 +174,10 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-6 justify-center items-center"
             >
               <motion.button 
-                onClick={() => router.push('/loan-compare')}
+                onClick={() => {
+                  gtag.trackButtonClick('Compare Loans', 'Hero Section');
+                  router.push('/loan-compare');
+                }}
                 className="px-8 py-4 bg-indigo-600 text-white font-semibold rounded-lg text-lg shadow-lg relative overflow-hidden group"
                 whileHover={{ 
                   scale: 1.05,
@@ -209,7 +213,10 @@ const Hero = () => {
               </motion.button>
               
               <motion.button 
-                onClick={() => setIsWaitlistOpen(true)}
+                onClick={() => {
+                  gtag.trackButtonClick('Join Waitlist', 'Hero Section');
+                  setIsWaitlistOpen(true);
+                }}
                 className="px-8 py-4 bg-white text-indigo-600 font-semibold rounded-lg text-lg border-2 border-indigo-600 relative overflow-hidden group"
                 whileHover={{ 
                   scale: 1.05,
