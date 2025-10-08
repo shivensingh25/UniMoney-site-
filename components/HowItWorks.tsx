@@ -151,7 +151,7 @@ const SurveyModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
               className="bg-[#2f2b3a] text-white font-semibold py-4 px-12 rounded-full text-xl transition duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Submitting...' : 'Join Waitlist'}
+              {isSubmitting ? 'Submitting...' : 'Be a beta tester'}
             </button>
           </div>
         </form>
@@ -178,7 +178,7 @@ const HowItWorks = () => {
             className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-8 rounded-lg text-xl transition duration-300 transform hover:scale-105 shadow-lg"
             onClick={() => setIsModalOpen(true)}
           >
-            Join the Waitlist
+            Be a beta tester
           </button>
         </div>
       </div>

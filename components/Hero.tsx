@@ -214,7 +214,7 @@ const Hero = () => {
               
               <motion.button 
                 onClick={() => {
-                  gtag.trackButtonClick('Join Waitlist', 'Hero Section');
+                  gtag.trackButtonClick('Be a beta tester', 'Hero Section');
                   setIsWaitlistOpen(true);
                 }}
                 className="px-8 py-4 bg-white text-indigo-600 font-semibold rounded-lg text-lg border-2 border-indigo-600 relative overflow-hidden group"
@@ -232,7 +232,7 @@ const Hero = () => {
                   className="relative z-10"
                   whileHover={{ color: "#ffffff" }}
                 >
-                  Join Waitlist
+                  Be a beta tester
                 </motion.span>
                 <motion.div
                   className="absolute inset-0 bg-indigo-600 scale-x-0 group-hover:scale-x-100 origin-left"

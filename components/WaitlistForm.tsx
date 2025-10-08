@@ -76,7 +76,9 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
           university: '',
         });
         if (router.pathname !== '/hidden-cta') {
-          router.push('/data-acquisition');
+          // Redirect to loan compare page instead of data acquisition
+          // Use the production URL as requested
+          window.location.href = 'https://uni-money-site.vercel.app/loan-compare';
         }
       }, 2000);
     } catch (error) {
