@@ -15,6 +15,8 @@ type Lender = {
   approvalDays: number;
   moratoriumMonths: number;
   maxLoanInINR: number;
+  collateralRequirement?: string;
+  coborrowerRequirement?: string;
   notes?: string[];
 };
 
@@ -238,13 +240,13 @@ export default function LoanResults() {
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="text-left px-6 py-4 font-semibold text-gray-900">Lender</th>
-                  <th className="text-left px-6 py-4 font-semibold text-gray-900">Interest Rate</th>
+                  <th className="text-left px-6 py-4 font-semibold text-gray-900">Bank/Lender</th>
+                  <th className="text-left px-6 py-4 font-semibold text-gray-900">Max Loan (INR)</th>
+                  <th className="text-left px-6 py-4 font-semibold text-gray-900">Interest Rate (p.a.)</th>
+                  <th className="text-left px-6 py-4 font-semibold text-gray-900">Collateral Requirement</th>
+                  <th className="text-left px-6 py-4 font-semibold text-gray-900">Co-borrower/Guarantor</th>
                   <th className="text-left px-6 py-4 font-semibold text-gray-900">Processing Fee</th>
-                  <th className="text-left px-6 py-4 font-semibold text-gray-900">Collateral</th>
                   <th className="text-left px-6 py-4 font-semibold text-gray-900">Approval Time</th>
-                  <th className="text-left px-6 py-4 font-semibold text-gray-900">EMI (est.)</th>
-                  <th className="text-left px-6 py-4 font-semibold text-gray-900">Likelihood</th>
                   <th className="text-left px-6 py-4 font-semibold text-gray-900">Action</th>
                 </tr>
               </thead>
@@ -274,32 +276,30 @@ export default function LoanResults() {
                         <div className="text-sm text-gray-500">{l.type}</div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-lg font-bold text-indigo-600">{midRate}%</div>
-                        <div className="text-sm text-gray-500">{l.rateRange[0]}% - {l.rateRange[1]}%</div>
+                        <div className="font-semibold">{formatINR(l.maxLoanInINR)}</div>
+                        <div className="text-sm text-gray-500">Maximum limit</div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="text-lg font-bold text-indigo-600">{l.rateRange[0]}%–{l.rateRange[1]}%</div>
+                        <div className="text-sm text-gray-500">floating, indicative</div>
+                      </td>
+                      <td className="px-6 py-4 max-w-xs">
+                        <div className="text-sm text-gray-900">
+                          {l.collateralRequirement || (l.requiresCollateral ? 'Required' : 'Not Required')}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 max-w-xs">
+                        <div className="text-sm text-gray-900">
+                          {l.coborrowerRequirement || (l.allowsCosigner ? 'Allowed' : 'Not Required')}
+                        </div>
                       </td>
                       <td className="px-6 py-4">
                         <div className="font-semibold">{formatINR(Math.round(pf))}</div>
                         <div className="text-sm text-gray-500">({(l.processingFeePct * 100).toFixed(1)}%)</div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${
-                          l.requiresCollateral ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'
-                        }`}>
-                          {l.requiresCollateral ? 'Required' : 'Not Required'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
                         <div className="font-semibold">{l.approvalDays} days</div>
-                        <div className="text-sm text-gray-500">Moratorium: {l.moratoriumMonths} mo</div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="font-semibold">{formatINR(Math.round(monthlyEmi))}</div>
-                        <div className="text-sm text-gray-500">per month</div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className={`inline-flex px-3 py-1 rounded-full text-sm font-medium ${likelihood.color}`}>
-                          {likelihood.label}
-                        </span>
+                        <div className="text-sm text-gray-500">Typical processing</div>
                       </td>
                       <td className="px-6 py-4">
                         <button className="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200">

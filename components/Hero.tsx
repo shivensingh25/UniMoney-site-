@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import WaitlistForm from './WaitlistForm';
+import SlidingBankLogos from './SlidingBankLogos';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import * as gtag from '../utils/gtag';
@@ -241,118 +242,263 @@ const Hero = () => {
               </motion.button>
             </motion.div>
 
-            {/* Trust Indicators with Staggered Animation */}
+            {/* Sliding Bank Logos Section - Moved here right after buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 3.0, ease: "easeOut" }}
-              className="pt-12"
+              transition={{ duration: 0.8, delay: 2.5, ease: "easeOut" }}
+              className="mt-16"
             >
+              <SlidingBankLogos />
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Trust Indicators Section */}
+      <div className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 py-16 overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-10 left-1/4 w-40 h-40 bg-gradient-to-r from-indigo-200/20 to-purple-200/20 rounded-full blur-2xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3],
+              x: [0, 30, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-10 right-1/4 w-32 h-32 bg-gradient-to-r from-blue-200/20 to-indigo-200/20 rounded-full blur-2xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.4, 0.7, 0.4],
+              x: [0, -20, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-to-r from-purple-200/15 to-pink-200/15 rounded-full blur-xl"
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 3.0, ease: "easeOut" }}
+            className="text-center"
+          >
+            <motion.div
+              className="relative inline-block mb-8"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 3.2 }}
+            >
+              {/* Glowing background effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-indigo-200/30 via-purple-200/40 to-blue-200/30 rounded-lg blur-sm"
+                animate={{
+                  opacity: [0.3, 0.7, 0.3],
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Text with gradient and shadow */}
               <motion.p 
-                className="text-sm text-gray-500 mb-6"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 3.2 }}
+                className="relative text-lg font-semibold bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent px-4 py-2"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  backgroundSize: "200% 100%",
+                  textShadow: "0 0 20px rgba(99, 102, 241, 0.3)",
+                }}
               >
                 Trusted by students from
               </motion.p>
-              <div className="flex flex-wrap justify-center items-center gap-8">
-                <motion.div 
-                  className="relative px-6 py-3 bg-white/80 backdrop-blur-sm border-2 border-indigo-200 rounded-xl shadow-lg font-bold text-indigo-700 cursor-pointer overflow-hidden"
-                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0, 
-                    scale: 1,
-                    borderColor: [
-                      "rgb(199, 210, 254)",
-                      "rgb(129, 140, 248)",
-                      "rgb(199, 210, 254)"
-                    ],
-                    boxShadow: [
-                      "0 4px 20px rgba(79, 70, 229, 0.1)",
-                      "0 8px 40px rgba(79, 70, 229, 0.3)",
-                      "0 4px 20px rgba(79, 70, 229, 0.1)"
+              
+              {/* Animated underline */}
+              <motion.div
+                className="absolute bottom-0 left-1/2 h-0.5 bg-gradient-to-r from-indigo-400 to-purple-400"
+                initial={{ width: 0, x: "-50%" }}
+                animate={{ 
+                  width: ["0%", "80%", "0%"],
+                  opacity: [0, 1, 0]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 3.5
+                }}
+              />
+              
+              {/* Floating sparkles */}
+              <motion.div
+                className="absolute -top-2 -right-2 w-2 h-2 bg-yellow-400 rounded-full"
+                animate={{
+                  scale: [0, 1.2, 0],
+                  rotate: [0, 180, 360],
+                  opacity: [0, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 4
+                }}
+              />
+              <motion.div
+                className="absolute -top-1 -left-3 w-1.5 h-1.5 bg-indigo-400 rounded-full"
+                animate={{
+                  scale: [0, 1, 0],
+                  y: [0, -10, 0],
+                  opacity: [0, 0.8, 0]
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 4.5
+                }}
+              />
+            </motion.div>
+            <div className="flex flex-wrap justify-center items-center gap-8">
+              <motion.div 
+                className="relative px-8 py-4 bg-gradient-to-br from-white/90 via-blue-50/80 to-indigo-50/90 backdrop-blur-lg border-2 border-indigo-200/50 rounded-2xl shadow-xl font-bold text-indigo-700 cursor-pointer overflow-hidden group"
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0, 
+                  scale: 1,
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 3.4,
+                  ease: "easeOut",
+                }}
+                whileHover={{ 
+                  scale: 1.1,
+                  y: -8,
+                  boxShadow: "0 20px 60px rgba(79, 70, 229, 0.3)",
+                  borderColor: "rgb(99, 102, 241)",
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Animated gradient background */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 via-purple-500/10 to-blue-500/5"
+                  animate={{
+                    opacity: [0.3, 0.7, 0.3],
+                    background: [
+                      "linear-gradient(90deg, rgba(99,102,241,0.05), rgba(139,92,246,0.1), rgba(59,130,246,0.05))",
+                      "linear-gradient(180deg, rgba(139,92,246,0.1), rgba(59,130,246,0.05), rgba(99,102,241,0.05))",
+                      "linear-gradient(270deg, rgba(59,130,246,0.05), rgba(99,102,241,0.05), rgba(139,92,246,0.1))"
                     ]
                   }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: 3.4,
-                    ease: "easeOut",
-                    borderColor: {
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    },
-                    boxShadow: {
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
                   }}
-                  whileHover={{ 
-                    scale: 1.08,
-                    y: -4,
-                    borderColor: "rgb(99, 102, 241)",
-                    boxShadow: "0 12px 50px rgba(79, 70, 229, 0.4)",
-                    backgroundColor: "rgba(255, 255, 255, 0.95)"
+                />
+                
+                {/* Enhanced shimmer effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-200/40 to-transparent -skew-x-12"
+                  animate={{
+                    x: ['-150%', '250%'],
+                    opacity: [0, 1, 0]
                   }}
-                  whileTap={{ scale: 0.98 }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Glowing border effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border-2 border-transparent"
+                  animate={{
+                    borderColor: [
+                      "rgba(99, 102, 241, 0.2)",
+                      "rgba(99, 102, 241, 0.6)",
+                      "rgba(139, 92, 246, 0.6)",
+                      "rgba(99, 102, 241, 0.2)"
+                    ],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                <motion.span
+                  className="relative z-10 text-xl font-bold flex items-center gap-2"
+                  animate={{
+                    color: [
+                      "rgb(67, 56, 202)",
+                      "rgb(99, 102, 241)", 
+                      "rgb(139, 92, 246)",
+                      "rgb(67, 56, 202)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 >
-                  {/* Animated background gradient */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-blue-500/10 opacity-0"
-                    animate={{
-                      opacity: [0, 0.3, 0],
-                      background: [
-                        "linear-gradient(90deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1), rgba(59,130,246,0.1))",
-                        "linear-gradient(180deg, rgba(139,92,246,0.1), rgba(59,130,246,0.1), rgba(99,102,241,0.1))",
-                        "linear-gradient(270deg, rgba(59,130,246,0.1), rgba(99,102,241,0.1), rgba(139,92,246,0.1))"
-                      ]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  
-                  {/* Shimmer effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0"
-                    animate={{
-                      x: ['-100%', '200%'],
-                      opacity: [0, 1, 0]
-                    }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      repeatDelay: 3,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  
                   <motion.span
-                    className="relative z-10 text-lg font-bold"
                     animate={{
-                      color: [
-                        "rgb(67, 56, 202)",
-                        "rgb(99, 102, 241)", 
-                        "rgb(67, 56, 202)"
-                      ]
+                      rotate: [0, 10, -10, 0],
+                      scale: [1, 1.1, 1],
                     }}
                     transition={{
-                      duration: 2.5,
+                      duration: 2,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
                   >
-                    🎓 Monash University
+                    🎓
                   </motion.span>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
+                  Monash University
+                </motion.span>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
 

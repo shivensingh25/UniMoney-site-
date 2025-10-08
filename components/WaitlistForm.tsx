@@ -114,7 +114,7 @@ const WaitlistForm = ({ isOpen, onClose }: WaitlistFormProps) => {
             onClick={e => e.stopPropagation()}
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-              Initial Approval
+              Be a beta tester
             </h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
