@@ -125,18 +125,6 @@ export const authOptions = {
   
   // Add these for better production support
   secret: process.env.NEXTAUTH_SECRET,
-  
-  events: {
-    async signIn({ user, isNewUser }: any) {
-      console.log(`✅ User signed in: ${user.email} (New user: ${isNewUser})`)
-    },
-    async signOut({ token }: any) {
-      console.log('👋 User signed out')
-    },
-    async createUser({ user }: any) {
-      console.log('👶 New user created:', user.email)
-    }
-  }
 }
 
 export default NextAuth(authOptions)
