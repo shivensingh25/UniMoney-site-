@@ -191,7 +191,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // Check auth configuration
     const authConfigCheck = {
       hasGoogleProvider: authOptions.providers?.some((p: any) => p.id === 'google') || false,
-      hasMongoAdapter: !!authOptions.adapter,
+      hasMongoAdapter: false, // We're using JWT strategy instead
       hasCallbacks: !!authOptions.callbacks
     };
 
