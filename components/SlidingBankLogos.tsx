@@ -13,16 +13,16 @@ const SlidingBankLogos = () => {
   const duplicatedLogos = [...bankLogos, ...bankLogos, ...bankLogos];
 
   return (
-    <div className="w-full bg-gradient-to-r from-indigo-50 via-blue-50 to-purple-50 py-16 overflow-hidden">
+    <div className="w-full bg-gradient-to-br from-slate-50 to-blue-50 py-16 overflow-hidden">
       <div className="relative">
-        {/* Enhanced gradient overlays with blue tint */}
-        <div className="absolute left-0 top-0 w-40 h-full bg-gradient-to-r from-indigo-50 via-indigo-50/80 to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 w-40 h-full bg-gradient-to-l from-purple-50 via-purple-50/80 to-transparent z-10"></div>
+        {/* Enhanced gradient overlays matching the main background */}
+        <div className="absolute left-0 top-0 w-40 h-full bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent z-10"></div>
+        <div className="absolute right-0 top-0 w-40 h-full bg-gradient-to-l from-blue-50 via-blue-50/80 to-transparent z-10"></div>
         
         {/* Floating background elements for extra visual interest */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-indigo-200/20 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/4 w-24 h-24 bg-purple-200/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-200/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/4 w-24 h-24 bg-slate-200/20 rounded-full blur-xl animate-pulse delay-1000"></div>
         </div>
         
         {/* Enhanced sliding container with perspective */}
