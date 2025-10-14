@@ -7,6 +7,7 @@ const SlidingBankLogos = () => {
     { name: 'Bank 3', logo: '/banks/image-1759926327484.png' },
     { name: 'Bank 4', logo: '/banks/image-1759926344619.png' },
     { name: 'Bank 5', logo: '/banks/image-1759926361495.png' },
+    { name: 'IDFC FIRST Bank', logo: '/banks/idfc logo.png' },
   ];
 
   // Triple the array for seamless infinite scroll
@@ -55,7 +56,7 @@ const SlidingBankLogos = () => {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                delay: (index % 5) * 0.8, // Stagger the animations for each original logo
+                delay: (index % 6) * 0.7, // Updated for 6 logos with slightly faster stagger
                 ease: "easeInOut",
               }}
               whileHover={{ 
