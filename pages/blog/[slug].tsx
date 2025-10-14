@@ -212,9 +212,15 @@ const BlogPostPage = () => {
               </div>
 
               {/* Content */}
-              <div className="prose prose-lg max-w-none mb-8">
+              <div className="prose prose-lg max-w-none mb-8 blog-content">
                 <div 
-                  className="whitespace-pre-wrap"
+                  className="whitespace-pre-wrap blog-content"
+                  style={{ 
+                    color: '#1f2937',
+                    lineHeight: '1.75',
+                    fontSize: '1.125rem',
+                    fontWeight: '400'
+                  }}
                   dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br/>') }}
                 />
               </div>

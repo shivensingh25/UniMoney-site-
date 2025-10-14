@@ -36,3 +36,42 @@ body {
   color: var(--foreground);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
+
+/* Blog content styling for better readability */
+.blog-content {
+  color: #1f2937 !important;
+  line-height: 1.75 !important;
+}
+
+.blog-content p {
+  color: #1f2937 !important;
+  margin-bottom: 1.25rem;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  color: #111827 !important;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content strong,
+.blog-content b {
+  color: #111827 !important;
+  font-weight: 600;
+}
+
+.blog-content ul,
+.blog-content ol {
+  color: #1f2937 !important;
+}
+
+.blog-content li {
+  color: #1f2937 !important;
+  margin-bottom: 0.5rem;
+}
