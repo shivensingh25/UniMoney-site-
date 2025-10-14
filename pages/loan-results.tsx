@@ -8,15 +8,15 @@ type Lender = {
   name: string;
   type: 'Bank' | 'NBFC' | 'International';
   rateRange: [number, number];
-  processingFeeFlat: number;
-  processingFeePct: number; // 0.01 = 1%
+  processingFeeFlat: number | null;
+  processingFeePct: number | null; // 0.01 = 1%
   requiresCollateral: boolean;
   allowsCosigner: boolean;
-  approvalDays: number;
+  approvalDays: number | null;
   moratoriumMonths: number;
   maxLoanInINR: number;
   collateralRequirement?: string;
-  coborrowerRequirement?: string;
+  coborrowerRequirement?: string | null;
   notes?: string[];
 };
 
@@ -32,7 +32,9 @@ function estimateScore(l: Lender, params: {
   let score = 0;
   const midRate = (l.rateRange[0] + l.rateRange[1]) / 2;
   score += (14 - Math.min(14, midRate)) * 10; // lower rate is better
-  score += (10 - Math.min(10, l.approvalDays)) * 3; // faster approval better
+  if (l.approvalDays !== null) {
+    score += (10 - Math.min(10, l.approvalDays)) * 3; // faster approval better
+  }
   if (params.hasCollateral && l.requiresCollateral) score += 15;
   if (!params.hasCollateral && !l.requiresCollateral) score += 20;
   if (params.hasCosigner && l.allowsCosigner) score += 5;
@@ -110,7 +112,13 @@ export default function LoanResults() {
 
   const sortedLenders = useMemo(() => {
     if (sortBy === 'rate') return [...lenders].sort((a, b) => ((a.l.rateRange[0] + a.l.rateRange[1]) / 2) - ((b.l.rateRange[0] + b.l.rateRange[1]) / 2));
-    if (sortBy === 'speed') return [...lenders].sort((a, b) => a.l.approvalDays - b.l.approvalDays);
+    if (sortBy === 'speed') return [...lenders].sort((a, b) => {
+      // Handle null values - put them at the end
+      if (a.l.approvalDays === null && b.l.approvalDays === null) return 0;
+      if (a.l.approvalDays === null) return 1;
+      if (b.l.approvalDays === null) return -1;
+      return a.l.approvalDays - b.l.approvalDays;
+    });
     return lenders; // best
   }, [lenders, sortBy]);
 
@@ -127,9 +135,11 @@ export default function LoanResults() {
         <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           {top3.map(({ l, score }, idx) => {
             const midRate = (l.rateRange[0] + l.rateRange[1]) / 2;
-            const pf = Math.max(l.processingFeeFlat, amount * l.processingFeePct);
+            const pf = l.processingFeeFlat === null || l.processingFeePct === null 
+              ? null 
+              : Math.max(l.processingFeeFlat, amount * l.processingFeePct);
             const interestDuringStudy = amount * (midRate / 100 / 12) * (studyMonths + l.moratoriumMonths);
-            const totalPayable = amount + interestDuringStudy + pf + amount * forexMarginPct;
+            const totalPayable = amount + interestDuringStudy + (pf || 0) + amount * forexMarginPct;
             return (
               <motion.div
                 key={l.id}
@@ -153,11 +163,15 @@ export default function LoanResults() {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Processing Fee</span>
-                    <span className="font-semibold">{formatINR(Math.round(pf))}</span>
+                    <span className="font-semibold">
+                      {pf === null ? 'Not mentioned' : formatINR(Math.round(pf))}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Approval Time</span>
-                    <span className="font-semibold">{l.approvalDays} days</span>
+                    <span className="font-semibold">
+                      {l.approvalDays === null ? 'Not mentioned' : `${l.approvalDays} days`}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Collateral Required</span>
@@ -253,9 +267,11 @@ export default function LoanResults() {
               <tbody className="divide-y divide-gray-200">
                 {sortedLenders.map(({ l }, idx) => {
                   const midRate = (l.rateRange[0] + l.rateRange[1]) / 2;
-                  const pf = Math.max(l.processingFeeFlat, amount * l.processingFeePct);
+                  const pf = l.processingFeeFlat === null || l.processingFeePct === null 
+                    ? null 
+                    : Math.max(l.processingFeeFlat, amount * l.processingFeePct);
                   const interestDuringStudy = amount * (midRate / 100 / 12) * (studyMonths + l.moratoriumMonths);
-                  const totalPayable = amount + interestDuringStudy + pf + amount * forexMarginPct;
+                  const totalPayable = amount + interestDuringStudy + (pf || 0) + amount * forexMarginPct;
                   const monthlyEmi = emi(amount, midRate, emiMonths);
                   const likelihood = (() => {
                     let score = estimateScore(l, { loanAmount: amount, hasCollateral: wantsCollateral, hasCosigner: wantsCosigner });
@@ -290,16 +306,24 @@ export default function LoanResults() {
                       </td>
                       <td className="px-6 py-4 max-w-xs">
                         <div className="text-sm text-gray-900">
-                          {l.coborrowerRequirement || (l.allowsCosigner ? 'Allowed' : 'Not Required')}
+                          {l.coborrowerRequirement === null ? 'Not mentioned' : (l.coborrowerRequirement || (l.allowsCosigner ? 'Allowed' : 'Not Required'))}
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="font-semibold">{formatINR(Math.round(pf))}</div>
-                        <div className="text-sm text-gray-500">({(l.processingFeePct * 100).toFixed(1)}%)</div>
+                        <div className="font-semibold">
+                          {pf === null ? 'Not mentioned' : formatINR(Math.round(pf))}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          {l.processingFeePct === null ? '' : `(${(l.processingFeePct * 100).toFixed(1)}%)`}
+                        </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="font-semibold">{l.approvalDays} days</div>
-                        <div className="text-sm text-gray-500">Typical processing</div>
+                        <div className="font-semibold">
+                          {l.approvalDays === null ? 'Not mentioned' : `${l.approvalDays} days`}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          {l.approvalDays === null ? '' : 'Typical processing'}
+                        </div>
                       </td>
                       <td className="px-6 py-4">
                         <button className="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200">

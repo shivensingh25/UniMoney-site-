@@ -84,15 +84,15 @@
     "name": "IDFC FIRST Bank",
     "type": "Bank",
     "rateRange": [9.5, 15.0],
-    "processingFeeFlat": 0,
-    "processingFeePct": 0.005,
+    "processingFeeFlat": null,
+    "processingFeePct": null,
     "requiresCollateral": false,
     "allowsCosigner": true,
-    "approvalDays": 10,
+    "approvalDays": null,
     "moratoriumMonths": 6,
     "maxLoanInINR": 15000000,
     "collateralRequirement": "Collateral-free up to ₹75 lakhs",
-    "coborrowerRequirement": "None explicitly mentioned (likely required for higher loan amounts)",
+    "coborrowerRequirement": null,
     "notes": ["Minimal and transparent fees & charges", "Collateral-free options available", "Wide interest rate range"]
   }
 ]
